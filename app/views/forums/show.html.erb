@@ -1,8 +1,8 @@
 <%= link_to "<- index", resource(:forums) %>
-
+<%= link_to "edit", resource(@forum, :edit) %>
 <h1><%= @forum.title %></h1>
 
-<p><%= @forum.description %></p>
+<p><%= @forum.description_html %></p>
 
 <h2>Discussions</h2>
 
