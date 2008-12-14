@@ -1,0 +1,16 @@
+<%= link_to "<- index", resource(:forums) %>
+
+<h1><%= @forum.title %></h1>
+
+<p><%= @forum.description %></p>
+
+<h2>Discussions</h2>
+
+<% if @discussions.any? %>
+  <ul class="discussions">
+  <% @discussions.each do |d| %>
+    <li><%= link_to d.title, resource(@forum, d) %></li>
+  <% end %>
+  </ul>
+<% end %>
+<%= link_to "New Discussion", resource(@forum, :discussions, :new) %>

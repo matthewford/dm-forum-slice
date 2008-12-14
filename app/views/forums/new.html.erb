@@ -1,0 +1,10 @@
+<h1>Forums controller, new action</h1>
+
+<p>Edit this file in <tt>app/views/forums/new.html.erb</tt></p>
+<%= link_to "<- index", resource(:forums) %>
+
+<%= form_for @forum, :action => resource(:forums) do %>
+  <%= partial :form %>
+  <%= submit "create" %>
+<% end =%>
+
