@@ -1,6 +1,12 @@
 class DmForum::Discussions < DmForum::Application
   provides :xml, :yaml, :js
-  before :find_forum
+  
+	before :find_forum
+	
+	def index
+		@discussions = @forum.discussions
+		display @discussions
+	end
 
   def show(id)
     @discussion = Discussion.get(id)

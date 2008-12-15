@@ -4,7 +4,7 @@ class DmForum::Comments < DmForum::Application
   before :find_objects
 
   def index
-    @comments = Comment.all
+    @comments = @discussion.comments
     display @comments
   end
 

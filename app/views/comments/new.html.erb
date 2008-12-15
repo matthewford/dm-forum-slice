@@ -1,6 +1,4 @@
 <h1>Comments controller, new action</h1>
-
-<p>Edit this file in <tt>app/views/comments/new.html.erb</tt></p>
 <%= form_for :comment, :action => resource(@forum, @discussion, :comments) do %>
 <%= partial :form %>
 <%= submit "save" %>

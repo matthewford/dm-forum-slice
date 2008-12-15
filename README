@@ -1,7 +1,12 @@
 DmForum
 =======
 
-A slice for the Merb framework.
+A forum slice for the Merb framework.
+
+# Dependencies
+
+* Markdown (rdiscount)
+* Merb >1.0.4 & DM > 0.9.9
 
 ------------------------------------------------------------------------------
 

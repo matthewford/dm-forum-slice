@@ -89,7 +89,7 @@ if defined?(Merb::Plugins)
   dependency "merb-action-args", "1.0.4"
   dependency "dm-timestamps" 
   require "iconv"
-  
+  # sudo gem install rdiscount
   begin
     require 'rdiscount'
     BlueCloth = RDiscount

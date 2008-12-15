@@ -1,12 +1,5 @@
 TODO:
-
-- Add your code to lib/dm-forum.rb
-- Add your Merb rake tasks to lib/dm-forum/merbtasks.rb
-
-Remove anything that you don't need:
-
-- app/controllers/main.rb DmForum::Main controller
-- app/views/layout/dm-forum.html.erb
-- spec/controllers/main_spec.rb controller specs
-- public/* any public files
-- stubs/* any stub files
+* If merb auth is used, inject user into things
+* If discussion locked raise unauthorized on create of comment/ hide form
+* pagination
+* make it look nicer :)
