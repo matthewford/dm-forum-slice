@@ -9,7 +9,7 @@
 <% if @discussions.any? %>
   <ul class="discussions">
   <% @discussions.each do |d| %>
-    <li><%= link_to d.title, resource(@forum, d) %></li>
+    <li><%= link_to d.title, resource(@forum, d) %> (updated <%= time_ago_in_words d.updated_at %> ago)</li>
   <% end %>
   </ul>
 <% end %>

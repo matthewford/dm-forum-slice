@@ -6,6 +6,8 @@ class Forum
   property :description, Text
   property :description_html, Text
   property :position, Integer
+  property :created_at, DateTime
+  property :updated_at, DateTime
   
   has n, :discussions
   # belongs_to :user  

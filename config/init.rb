@@ -35,6 +35,7 @@ use_orm :datamapper
 Merb::BootLoader.before_app_loads do 
   DataMapper.setup(:default, 'sqlite3::memory:')
   DataMapper.auto_migrate!
+  DataObjects::Sqlite3.logger = DataObjects::Logger.new('log/dm.log', 0)
 end
 
 

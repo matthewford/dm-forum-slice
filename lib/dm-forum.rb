@@ -87,6 +87,7 @@ if defined?(Merb::Plugins)
   dependency "merb-assets", "1.0.4"
   dependency "merb-helpers", "1.0.4"
   dependency "merb-action-args", "1.0.4"
+  dependency "dm-timestamps" 
   require "iconv"
   
   begin

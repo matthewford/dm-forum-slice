@@ -1,5 +1,5 @@
 class DmForum::Comments < DmForum::Application
-  # provides :xml, :yaml, :js
+  provides :xml, :yaml, :js
   
   before :find_objects
 

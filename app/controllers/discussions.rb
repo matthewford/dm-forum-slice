@@ -1,5 +1,5 @@
 class DmForum::Discussions < DmForum::Application
-  # provides :xml, :yaml, :js
+  provides :xml, :yaml, :js
   before :find_forum
 
   def show(id)

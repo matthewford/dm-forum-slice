@@ -1,15 +1,15 @@
 class DmForum::Forums < DmForum::Application
-  # provides :xml, :yaml, :js
+  provides :xml, :yaml, :js
 
   def index
-    @forums = Forum.all
+    @forums = Forum.all(:order => [:position.desc])
     display @forums
   end
 
   def show(id)
     @forum = Forum.get(id)
     raise NotFound unless @forum
-    @discussions = @forum.discussions
+    @discussions = @forum.discussions(:order => [:sticky.desc, :updated_at.desc])
     display @forum
   end
 

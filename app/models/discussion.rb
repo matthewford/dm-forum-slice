@@ -7,6 +7,8 @@ class Discussion
   property :body_html, Text
   property :locked, Boolean, :default => false
   property :sticky, Boolean, :default => false
+  property :created_at, DateTime
+  property :updated_at, DateTime
   
   belongs_to :forum, :class_name => "Forum"
   # belongs_to :user  
