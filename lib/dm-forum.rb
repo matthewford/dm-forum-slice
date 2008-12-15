@@ -53,16 +53,16 @@ if defined?(Merb::Plugins)
     # @note prefix your named routes with :dm_forum_
     #   to avoid potential conflicts with global named routes.
     def self.setup_router(scope)
-      scope.resources :forums do
-        scope.resources :discussions do
-          scope.resources :comments
+      scope.resources :forums do |f|
+        f.resources :discussions do |d|
+          d.resources :comments
         end
       end
       # example of a named route
       # the slice is mounted at /dm-forum - note that it comes before default_routes
       scope.match('/').to(:controller => 'forums', :action => 'index').name(:forum_home)
       # enable slice-level default routes by default
-      scope.default_routes
+      # scope.default_routes
     end
     
   end
