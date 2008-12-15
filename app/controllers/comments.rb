@@ -1,5 +1,7 @@
 class DmForum::Comments < DmForum::Application
   # provides :xml, :yaml, :js
+  
+  before :find_objects
 
   def index
     @comments = Comment.all
@@ -21,8 +23,9 @@ class DmForum::Comments < DmForum::Application
 
   def create(comment)
     @comment = Comment.new(comment)
+    @comment.discussion = @discussion
     if @comment.save
-      redirect resource(@comment), :message => {:notice => "Comment was successfully created"}
+      redirect resource(@forum, @discussion), :message => {:notice => "Comment was successfully created"}
     else
       message[:error] = "Comment failed to be created"
       render :new
@@ -33,7 +36,7 @@ class DmForum::Comments < DmForum::Application
     @comment = Comment.get(id)
     raise NotFound unless @comment
     if @comment.update_attributes(comment)
-       redirect resource(@comment)
+       redirect resource(@forum, @discussion)
     else
       display @comment, :edit
     end
@@ -43,10 +46,17 @@ class DmForum::Comments < DmForum::Application
     @comment = Comment.get(id)
     raise NotFound unless @comment
     if @comment.destroy
-      redirect resource(:comments)
+      redirect resource(@forum, @discussion)
     else
       raise InternalServerError
     end
+  end
+  
+  private
+  
+  def find_objects
+    @forum = Forum.get(params[:forum_id])
+    @discussion = Discussion.get(params[:discussion_id])
   end
 
 end # Comments

@@ -5,6 +5,7 @@ class DmForum::Discussions < DmForum::Application
   def show(id)
     @discussion = Discussion.get(id)
     raise NotFound unless @discussion
+    @comments = @discussion.comments
     display @discussion
   end
 
@@ -23,8 +24,9 @@ class DmForum::Discussions < DmForum::Application
 
   def create(discussion)
     @discussion = Discussion.new(discussion)
+    @discussion.forum = @forum
     if @discussion.save
-      redirect resource(@discussion), :message => {:notice => "Discussion was successfully created"}
+      redirect resource(@forum, @discussion), :message => {:notice => "Discussion was successfully created"}
     else
       message[:error] = "Discussion failed to be created"
       render :new
@@ -35,7 +37,7 @@ class DmForum::Discussions < DmForum::Application
     @discussion = Discussion.get(id)
     raise NotFound unless @discussion
     if @discussion.update_attributes(discussion)
-       redirect resource(@discussion)
+       redirect resource(@forum, @discussion)
     else
       display @discussion, :edit
     end
@@ -45,7 +47,7 @@ class DmForum::Discussions < DmForum::Application
     @discussion = Discussion.get(id)
     raise NotFound unless @discussion
     if @discussion.destroy
-      redirect resource(:discussions)
+      redirect resource(@forum)
     else
       raise InternalServerError
     end

@@ -8,8 +8,8 @@ class DmForum::Forums < DmForum::Application
 
   def show(id)
     @forum = Forum.get(id)
-    @discussions = @forum.discussions
     raise NotFound unless @forum
+    @discussions = @forum.discussions
     display @forum
   end
 
