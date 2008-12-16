@@ -20,6 +20,9 @@ Merb.start_environment(
   :session_store => 'memory'
 )
 
+require 'dm-sweatshop'
+
+
 module Merb
   module Test
     module SliceHelper
@@ -43,4 +46,36 @@ Spec::Runner.configure do |config|
   config.include(Merb::Test::RouteHelper)
   config.include(Merb::Test::ControllerHelper)
   config.include(Merb::Test::SliceHelper)
+end
+
+
+## dm-sweatshop factories
+Forum.fix {
+	{
+		:title => /\w+/.gen,
+		:description =>  /\w+/.gen
+	}
+}
+
+Discussion.fix {
+	{
+		:title => /\w+/.gen,
+		:body => /\w+/.gen
+	}
+}
+
+Comment.fix {
+	{
+		:body => /\w+/.gen
+	}
+}
+
+# slug helper, rails parameterize inspired
+def escape(string)
+  result = Iconv.iconv('ascii//translit//IGNORE', 'utf-8', string).to_s
+  result.gsub!(/[^\x00-\x7F]+/, '')  # Remove anything non-ASCII entirely (e.g. diacritics).
+  result.gsub!(/[^\w_ \-]+/i,   '')  # Remove unwanted chars.
+  result.gsub!(/[ \-]+/i,      '-')  # No more than one of the separator in a row.
+  result.gsub!(/^\-|\-$/i,      '')  # Remove leading/trailing separator.
+  result.downcase
 end

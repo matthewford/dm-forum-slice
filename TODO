@@ -2,4 +2,5 @@ TODO:
 * If merb auth is used, inject user into things
 * If discussion locked raise unauthorized on create of comment/ hide form
 * pagination
+* refractor slug generation.
 * make it look nicer :)
